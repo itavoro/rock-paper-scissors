@@ -1,3 +1,8 @@
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const div = document.querySelector('#result');
+
 function getComputerChoice() {
     const randomNumber = Math.ceil(Math.random() * 3);
     let computerChoice;
@@ -15,70 +20,69 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-
-function getHumanChoice() {
-    let humanChoice = prompt("Rock, paper, or scissors?");
-    humanChoice = humanChoice.toLowerCase();
-    return humanChoice;
-}
-
-
-let humanScore = 0;
 let computerScore = 0;
+let humanScore = 0;
 
-
-function playRound(humanChoice, computerChoice) {
-    switch (humanChoice) {
+function playRock() {
+    const computerChoice = getComputerChoice();
+    switch (computerChoice) {
         case "rock":
-            switch (computerChoice) {
-                case "rock":
-                    console.log("Tie! Rock and Rock are equal!");
-                    break;
-                case "paper":
-                    console.log("You lose! Paper beats Rock!");              
-                    computerScore += 1;
-                    break;
-                case "scissors":
-                    console.log("You win! Rock beats Scissors!");
-                    humanScore += 1;
-                    break;
-            }
-        break;
+            div.textContent = "Tie! Rock and Rock are equal!";
+            break;
         case "paper":
-            switch (computerChoice) {
-                case "rock":
-                    console.log("You win! Paper beats Rock!");                 
-                    humanScore += 1;
-                    break;
-                case "paper":
-                    console.log("Tie! Paper and Paper are equal");
-                    break;
-                case "scissors":
-                    console.log("You lose! Scissors beat Paper!");
-                    computerScore += 1;
-                    break;
-            }
-        break;
+            div.textContent = "You lose! Paper beats rock!"    ;      
+            computerScore += 1;
+            break;
         case "scissors":
-            switch (computerChoice) {
-                case "rock":
-                    console.log("You lose! Rock beats scissors!");
-                    computerScore += 1;
-                    break;
-                case "paper":
-                    console.log("You win! Scissors beat paper!");
-                    humanScore += 1;
-                    break;
-                case "scissors":
-                    console.log("Tie! Paper and Paper are equal");
-                    break;
-            }
+            div.textContent = "You win! Scissors beat rock!";
+            humanScore += 1;
             break;
     }
 }
 
 
-function playGame() {
+function playPaper() {
+    const computerChoice = getComputerChoice();
+    switch (computerChoice) {
+        case "rock":
+            div.textContent = "You win! Paper beats Rock!";
+            humanScore += 1;
+            break;
+        case "paper":
+            div.textContent = "Tie! Paper and Paper are equal";
+            break;
+        case "scissors":
+            div.textContent = "You lose! Scissors beat Paper!";
+            computerScore += 1;
+            break;
+    }
+}
+
+
+function playScissors() {
+    const computerChoice = getComputerChoice();
+    switch (computerChoice) {
+        case "rock":
+            div.textContent = "You lose! Rock beats scissors!";
+            computerScore += 1;
+            break;
+        case "paper":
+            div.textContent = "You win! Scissors beat paper!";
+            humanScore += 1;
+            break;
+        case "scissors":
+            div.textContent = "Tie! Paper and Paper are equal";
+            break;
+    }
+}
+
+
+rock.addEventListener('click', playRock);
+paper.addEventListener('click', playPaper);
+scissors.addEventListener('click', playScissors);
+
+
+/*function playGame() {
     for (let i = 0; i < 5; i++) {
         let computerResult = getComputerChoice();
         let humanResult = getHumanChoice();
@@ -89,4 +93,7 @@ function playGame() {
 }
 
 
-playGame();
+playGame();*/
+
+
+
